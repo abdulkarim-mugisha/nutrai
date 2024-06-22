@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import { Activity, Target, Utensils } from 'lucide-react';
+import { Activity, Target, Utensils, Smartphone } from 'lucide-react';
 
 const DataCollection = () => {
+  const [integrationMethod, setIntegrationMethod] = useState('');
   const [formData, setFormData] = useState({
+    weight: '',
+    height: '',
+    age: '',
+    gender: '',
     fitnessGoal: '',
     dietaryPreference: '',
     allergies: '',
@@ -20,6 +25,11 @@ const DataCollection = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const healthData = {
+      integrationMethod,
+      userData: formData
+    };
+    console.log('Health Data JSON:', JSON.stringify(healthData, null, 2));
     alert('Your fitness journey begins now!');
   };
 
@@ -30,8 +40,8 @@ const DataCollection = () => {
           <div className="md:w-2/5 bg-gradient-to-br from-green-600 to-green-800 p-8 text-white flex flex-col justify-center relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-green-500 rounded-full filter blur-3xl opacity-50 -mr-32 -mt-32"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-green-700 rounded-full filter blur-3xl opacity-50 -ml-32 -mb-32"></div>
-            <h1 className="text-4xl font-bold mb-4 relative z-10">Welcome to Your Fitness Journey</h1>
-            <p className="text-lg mb-6 relative z-10">Craft your unique path to health and vitality.</p>
+            <h1 className="text-4xl font-bold mb-4 relative z-10">Sync Your Health Journey</h1>
+            <p className="text-lg mb-6 relative z-10">Craft your personalized wellness experience.</p>
             <div className="flex items-center space-x-4 mb-6 relative z-10">
               <Activity size={32} />
               <span className="text-xl">Tailor Your Transformation</span>
@@ -47,6 +57,112 @@ const DataCollection = () => {
             </div>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Choose Integration Method
+                </label>
+                <div className="space-y-2">
+                  <button
+                    type="button"
+                    onClick={() => setIntegrationMethod('appleHealth')}
+                    className={`w-full p-3 border rounded-lg transition ${
+                      integrationMethod === 'appleHealth'
+                        ? 'bg-green-600 text-white'
+                        : 'bg-white text-gray-700 hover:bg-green-50'
+                    }`}
+                  >
+                    Connect Apple Health
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIntegrationMethod('googleFit')}
+                    className={`w-full p-3 border rounded-lg transition ${
+                      integrationMethod === 'googleFit'
+                        ? 'bg-green-600 text-white'
+                        : 'bg-white text-gray-700 hover:bg-green-50'
+                    }`}
+                  >
+                    Connect Google Fit
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIntegrationMethod('manual')}
+                    className={`w-full p-3 border rounded-lg transition ${
+                      integrationMethod === 'manual'
+                        ? 'bg-green-600 text-white'
+                        : 'bg-white text-gray-700 hover:bg-green-50'
+                    }`}
+                  >
+                    Manual Input
+                  </button>
+                </div>
+              </div>
+
+              {integrationMethod === 'manual' && (
+                <>
+                  <div>
+                    <label htmlFor="weight" className="block text-sm font-medium text-gray-700 mb-1">
+                      Weight (kg)
+                    </label>
+                    <input
+                      type="number"
+                      id="weight"
+                      name="weight"
+                      value={formData.weight}
+                      onChange={handleChange}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition bg-white bg-opacity-50 backdrop-blur-sm"
+                      placeholder="Enter your weight"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="height" className="block text-sm font-medium text-gray-700 mb-1">
+                      Height (cm)
+                    </label>
+                    <input
+                      type="number"
+                      id="height"
+                      name="height"
+                      value={formData.height}
+                      onChange={handleChange}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition bg-white bg-opacity-50 backdrop-blur-sm"
+                      placeholder="Enter your height"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="age" className="block text-sm font-medium text-gray-700 mb-1">
+                      Age
+                    </label>
+                    <input
+                      type="number"
+                      id="age"
+                      name="age"
+                      value={formData.age}
+                      onChange={handleChange}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition bg-white bg-opacity-50 backdrop-blur-sm"
+                      placeholder="Enter your age"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="gender" className="block text-sm font-medium text-gray-700 mb-1">
+                      Gender
+                    </label>
+                    <select
+                      id="gender"
+                      name="gender"
+                      value={formData.gender}
+                      onChange={handleChange}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition bg-white bg-opacity-50 backdrop-blur-sm"
+                    >
+                      <option value="">Select gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                      <option value="preferNotToSay">Prefer not to say</option>
+                    </select>
+                  </div>
+                </>
+              )}
+
+              <div>
                 <label htmlFor="fitnessGoal" className="block text-sm font-medium text-gray-700 mb-1">
                   Fitness Goal
                 </label>
@@ -58,16 +174,16 @@ const DataCollection = () => {
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition bg-white bg-opacity-50 backdrop-blur-sm"
                 >
                   <option value="">Select a goal</option>
-                  <option value="weightLoss">weight Loss</option>
+                  <option value="weightLoss">Weight Loss</option>
                   <option value="weightGain">Weight Gain</option>
                   <option value="muscleBuilding">Power Building</option>
-                  <option value="maintenance">maintenance</option>
+                  <option value="maintenance">Maintenance</option>
                 </select>
               </div>
               
               <div>
                 <label htmlFor="dietaryPreference" className="block text-sm font-medium text-gray-700 mb-1">
-                  dietary Preference
+                  Dietary Preference
                 </label>
                 <select
                   id="dietaryPreference"
@@ -88,7 +204,7 @@ const DataCollection = () => {
               
               <div>
                 <label htmlFor="allergies" className="block text-sm font-medium text-gray-700 mb-1">
-                  Food Allergies/Intolarances
+                  Food Allergies/Intolerances
                 </label>
                 <input
                   type="text"
@@ -103,7 +219,7 @@ const DataCollection = () => {
               
               <div>
                 <label htmlFor="activityLevel" className="block text-sm font-medium text-gray-700 mb-1">
-                  activity Level
+                  Activity Level
                 </label>
                 <select
                   id="activityLevel"
@@ -113,7 +229,7 @@ const DataCollection = () => {
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition bg-white bg-opacity-50 backdrop-blur-sm"
                 >
                   <option value="">Select activity level</option>
-                  <option value="sedentary">Sedentary </option>
+                  <option value="sedentary">Sedentary</option>
                   <option value="lightlyActive">Lightly Active</option>
                   <option value="moderatelyActive">Moderately Active</option>
                   <option value="veryActive">Very Active</option>
@@ -145,7 +261,7 @@ const DataCollection = () => {
                   type="submit"
                   className="w-full py-4 px-6 border border-transparent rounded-lg shadow-sm text-lg font-medium text-white bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition transform hover:-translate-y-1 hover:shadow-lg"
                 >
-                  Ignite Your Wellness Journey
+                  Complete Health profile
                 </button>
               </div>
             </form>
