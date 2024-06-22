@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, Utensils, Activity, Dna } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
   return (
@@ -21,7 +22,7 @@ const LandingPage = () => {
         <section className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Personalized Nutrition, Powered by AI</h2>
           <p className="text-xl mb-8">Get custom meal plans tailored to your unique health profile, genetic predispositions, and fitness goals.</p>
-          <a href="#signup" className="bg-green-500 text-white px-6 py-3 rounded-full text-lg hover:bg-green-600 inline-flex items-center">
+          <a href="/data-collection" className="bg-green-500 text-white px-6 py-3 rounded-full text-lg hover:bg-green-600 inline-flex items-center">
             Get Started <ArrowRight className="ml-2" />
           </a>
         </section>
