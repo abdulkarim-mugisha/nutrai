@@ -1,0 +1,17 @@
+fastapi
+pydantic
+llama_cpp
+uvicorn
+json
+re
+ultralytics
+cv2
+numpy
+os
+transformers
+PIL
+torch
+io
+unittest.mock
+shutil
+pathlib
