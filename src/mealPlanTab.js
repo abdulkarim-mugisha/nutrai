@@ -387,6 +387,8 @@ const MealPlanTab = () => {
   const [selectedMeal, setSelectedMeal] = useState(null);
   const [mealImages, setMealImages] = useState({});
   const [isCameraActive, setIsCameraActive] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState('');
+
 
 
   const mealTypes = ['Breakfast', 'Lunch', 'Dinner'];
@@ -460,6 +462,39 @@ const MealPlanTab = () => {
     });
   };
 
+  const uploadImage = async (imageDataUrl) => {
+    let capturedImage = imageDataUrl;
+    if (capturedImage) {
+      try {
+        setUploadStatus('Uploading...');
+       
+        // Extract the base64 data from the data URL
+        const base64Data = capturedImage.split(',')[1];
+       
+        const response = await fetch('http://localhost:3080/api/upload_image', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ image: base64Data })
+        });
+ 
+ 
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+ 
+        const result = await response.json();
+        setUploadStatus('Upload successful!');
+        console.log('Upload response:', result);
+      } catch (error) {
+        setUploadStatus('Upload failed. Please try again.');
+        console.error('Upload error:', error);
+      }
+    }
+  };
+ 
+
   const handleImageCapture = (imageDataUrl) => {
     if (selectedMeal) {
       setMealImages(prev => ({
@@ -468,6 +503,7 @@ const MealPlanTab = () => {
       }));
       console.log("Image saved for", selectedMeal, "on", selectedDate.toISOString().split('T')[0]);
     }
+    uploadImage(imageDataUrl);
     setIsCameraActive(false);
   };
 
