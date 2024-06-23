@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Activity, Target, Utensils, Smartphone } from 'lucide-react';
-import { generateMealPlan} from './utils.js';
+// import { generateMealPlan} from './utils.js';
 
 const DataCollection = () => {
   const [integrationMethod, setIntegrationMethod] = useState('');
@@ -31,6 +31,21 @@ const DataCollection = () => {
       userData: formData
     };
     console.log('Health Data JSON:', JSON.stringify(healthData, null, 2));
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(healthData.userData)
+    };
+    
+    console.log(options.body);
+    
+    fetch('http://localhost:3000/api/save-user-data', options)
+      .then(response => response.json())
+      .then(data => console.log('Data saved:', data))
+      .catch(error => console.error('Error saving data:', error));
+  
     // let response = generateMealPlan()
     // .then(mealPlan => console.log(mealPlan))
     // .catch(error => console.error(error));
