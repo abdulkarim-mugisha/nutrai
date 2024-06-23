@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CalendarDays, ArrowUpRight, Book, User } from 'lucide-react';
+import { generateMealPlan } from './utils.js';
 
 const MealPlanTab = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -8,11 +9,21 @@ const MealPlanTab = () => {
   const mealTypes = ['Breakfast', 'Lunch', 'Dinner'];
 
   // Dummy data for meal plan
+
   const dummyMealPlan = {
     Breakfast: 'Oatmeal with fruits',
     Lunch: 'Grilled chicken salad',
     Dinner: 'Salmon with roasted vegetables'
   };
+
+  generateMealPlan()
+  .then((mealPlan) => {
+    dummyMealPlan = {
+      Breakfast: mealPlan['Day 1'][0], 
+      Lunch: mealPlan['Day 1'][1],
+      Dinner: mealPlan['Day 1'][2]
+    };
+  });
 
   const generateWeekDays = () => {
     const days = [];
