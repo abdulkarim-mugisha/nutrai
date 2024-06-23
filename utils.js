@@ -1,8 +1,12 @@
-// const axios = require('axios');
+const axios = require('axios');
+const express = require('express');
+const app = express();
+const port = 3000;
+
 
 
 // Replace with your local LLM server URL
-const llmServerUrl = 'https://156e-2607-f140-6000-8026-9c97-d934-419e-3d5d.ngrok-free.app/';
+const llmServerUrl = 'https://b792-98-47-175-66.ngrok-free.app/';
 
 
 // Example user data
@@ -52,11 +56,11 @@ const userData = {
   }
 }
 
- function generateMealPlan() {
+ async function generateMealPlan() {
 //   let url = llmServerUrl + 'image_text_from';
-//   let message = {
-//     data: `Generate a meal plan for me based on my personal data. I'm ${userData.age} years old, ${userData.height} cm tall, and weigh ${userData.weight} kg. I have food allergies to ${userData.foodAllergies.join(', ')} and health conditions including ${userData.healthConditions.join(', ')}. I take medications such as ${userData.medications.join(', ')} and have a nutrition goal of ${userData.nutritionGoal}. My lifestyle is ${userData.lifestyle} and I have dietary restrictions of ${userData.dietaryRestrictions.join(', ')}. My food preferences include ${userData.foodPreferences.join(', ')} and my activity level is ${userData.activityLevel}. My daily goals are to consume ${userData.dailyGoals.calories} calories, ${userData.dailyGoals.protein}g of protein, ${userData.dailyGoals.fat}g of fat, ${userData.dailyGoals.carbs}g of carbs, ${userData.dailyGoals.sugar}g of sugar, and ${userData.dailyGoals.fiber}g of fiber.`
-// };
+  let message = {
+    data: `Generate a meal plan for me based on my personal data. I'm ${userData.age} years old, ${userData.height} cm tall, and weigh ${userData.weight} kg. I have food allergies to ${userData.foodAllergies.join(', ')} and health conditions including ${userData.healthConditions.join(', ')}. I take medications such as ${userData.medications.join(', ')} and have a nutrition goal of ${userData.nutritionGoal}. My lifestyle is ${userData.lifestyle} and I have dietary restrictions of ${userData.dietaryRestrictions.join(', ')}. My food preferences include ${userData.foodPreferences.join(', ')} and my activity level is ${userData.activityLevel}. My daily goals are to consume ${userData.dailyGoals.calories} calories, ${userData.dailyGoals.protein}g of protein, ${userData.dailyGoals.fat}g of fat, ${userData.dailyGoals.carbs}g of carbs, ${userData.dailyGoals.sugar}g of sugar, and ${userData.dailyGoals.fiber}g of fiber.`
+};
   // const data = {
   //   method: 'POST',
   //   headers: {
@@ -64,17 +68,27 @@ const userData = {
   //   },
   //   body: JSON.stringify(message)
   // };
+  const axios = await import('https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js');
 
-  const options = {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: '{"data":"Generate a meal plan for me based on my personal data. I\'m looking to lose weight and improve my overall health. I am a healthy 32-y.o who weights 300 lbs and has a carnivore diet and a respectable height(I am 5\'2 btw)"}'
-  };
+  axios.post(`${llmServerUrl}image_text_from`, JSON.stringify(message))
+.then(function (response) {
+    console.log(response.data);
+    alert('Request successful! Check console for details.');
+})
+.catch(function (error) {
+    console.error('Error:', error);
+    alert('An error occurred. Check console for details.');
+});
+  // const options = {
+  //   method: 'POST',
+  //   headers: {'Content-Type': 'application/json'},
+  //   body: '{"data":"Generate a meal plan for me based on my personal data. I\'m looking to lose weight and improve my overall health. I am a healthy 32-y.o who weights 300 lbs and has a carnivore diet and a respectable height(I am 5\'2 btw)"}'
+  // };
   
-  fetch('https://156e-2607-f140-6000-8026-9c97-d934-419e-3d5d.ngrok-free.app/image_text_from', options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
+  // fetch('https://156e-2607-f140-6000-8026-9c97-d934-419e-3d5d.ngrok-free.app/image_text_from', options)
+  //   .then(response => response.json())
+  //   .then(response => console.log(response))
+  //   .catch(err => console.error(err));
 
   // fetch(url, data)
   //   .then(checkStatus)

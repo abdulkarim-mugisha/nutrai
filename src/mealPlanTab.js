@@ -1,29 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CalendarDays, ArrowUpRight, Book, User } from 'lucide-react';
-import { generateMealPlan } from './utils.js';
 
 const MealPlanTab = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [mealPlan, setMealPlan] = useState({
+    Breakfast: '',
+    Lunch: '',
+    Dinner: ''
+  });
 
   const daysOfWeek = ['S', 'S', 'M', 'T', 'W', 'T', 'F'];
   const mealTypes = ['Breakfast', 'Lunch', 'Dinner'];
 
-  // Dummy data for meal plan
-
-  const dummyMealPlan = {
-    Breakfast: 'Oatmeal with fruits',
-    Lunch: 'Grilled chicken salad',
-    Dinner: 'Salmon with roasted vegetables'
-  };
-
-  generateMealPlan()
-  .then((mealPlan) => {
-    dummyMealPlan = {
-      Breakfast: mealPlan['Day 1'][0], 
-      Lunch: mealPlan['Day 1'][1],
-      Dinner: mealPlan['Day 1'][2]
+  useEffect(() => {
+    const fetchMealPlan = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/generate-meal-plan', {
+          method: 'GET',
+          headers: {'Content-Type': 'application/json'}
+        });
+        const data = await response.json();
+        setMealPlan({
+          Breakfast: data.breakfast, 
+          Lunch: data.lunch,
+          Dinner: data.dinner
+        });
+      } catch (error) {
+        console.error('Error fetching meal plan:', error);
+      }
     };
-  });
+
+    fetchMealPlan();
+  }, []);
 
   const generateWeekDays = () => {
     const days = [];
@@ -46,9 +54,9 @@ const MealPlanTab = () => {
             
             <div className="flex justify-between items-center mb-6">
               {weekDays.map((day, index) => (
-                <div key={index} className={`text-center ${day.getDate() === 24 ? 'bg-green-500 text-white rounded-full w-10 h-10 flex items-center justify-center' : ''}`}>
+                <div key={index} className={`text-center ${day.getDate() === currentDate.getDate() ? 'bg-green-500 text-white rounded-full w-10 h-10 flex items-center justify-center' : ''}`}>
                   <div className="font-medium">{daysOfWeek[index]}</div>
-                  <div className={`${day.getDate() === 24 ? 'font-bold' : ''}`}>{day.getDate()}</div>
+                  <div className={`${day.getDate() === currentDate.getDate() ? 'font-bold' : ''}`}>{day.getDate()}</div>
                 </div>
               ))}
             </div>
@@ -57,14 +65,13 @@ const MealPlanTab = () => {
               {mealTypes.map((mealType, index) => (
                 <div key={index} className="bg-white bg-opacity-50 backdrop-blur-sm rounded-lg p-4 shadow">
                   <h2 className="font-bold text-lg mb-2 text-green-700">{mealType}</h2>
-                  <p className="text-gray-700">{dummyMealPlan[mealType]}</p>
+                  <p className="text-gray-700">{mealPlan[mealType]}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
       </div>
-
     </div>
   );
 };

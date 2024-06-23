@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, Book, User } from 'lucide-react';
 
 const MeTab = () => {
-  // Dummy user data
-  const userData = {
-    weight: '132 lbs',
-    height: '6ft 7in',
-    age: '32 years',
-    dietaryPreference: 'Vegetarian',
-    activityLevel: 'Moderately Active'
-  };
+  const [userData, setUserData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/user-data')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch user data');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setUserData(data);
+        setIsLoading(false);
+      })
+      .catch(err => {
+        setError(err.message);
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!userData) return <div>No user data available</div>;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-400 via-green-300 to-blue-500 flex flex-col">
@@ -43,7 +60,6 @@ const MeTab = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };
