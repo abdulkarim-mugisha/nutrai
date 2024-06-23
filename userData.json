@@ -1,19 +1,11 @@
 {
-  "weight": "90",
-  "height": "190",
-  "age": "25",
-  "gender": "female",
-  "fitnessGoal": "muscleBuilding",
+  "weight": "",
+  "height": "",
+  "age": "",
+  "gender": "",
+  "fitnessGoal": "weightLoss",
   "dietaryPreference": "vegetarian",
   "allergies": "gluten",
-  "activityLevel": "extraActive",
-  "cookingHabits": "alwaysCook",
-  "mealPlan": [
-    {
-      "date": "2024-06-23",
-      "breakfast": "Breakfast: Smoothie bowl with spinach, banana, almond milk, and chia seeds",
-      "lunch": "Lunch: Tuna salad with mixed greens, cucumber, and tomato",
-      "dinner": "Dinner: Grilled vegetable stir-fry with brown rice and tofu"
-    }
-  ]
+  "activityLevel": "lightlyActive",
+  "cookingHabits": ""
 }

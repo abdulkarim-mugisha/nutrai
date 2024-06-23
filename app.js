@@ -31,11 +31,12 @@ const message = {
   }
 }
 
+
 // Express route for generating meal plan
-app.get('/api/generate-meal-plan', async (req, res) => {
+app.post('/api/generate-meal-plan', async (req, res) => {
   try {
     // save meal plan to user data
-    const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+    const date = req.body;
     const userData = fs.readFileSync('userData.json');
     let userDataObj = JSON.parse(userData);
     if (!userDataObj["mealPlan"]){
@@ -43,21 +44,21 @@ app.get('/api/generate-meal-plan', async (req, res) => {
         const mealPlan = await generateMealPlan();
 
         const formattedMealPlan = {
-            "date": today, 
+            "date": date, 
             "breakfast": mealPlan["Day 1"][0],
             "lunch": mealPlan["Day 1"][1],
             "dinner": mealPlan["Day 1"][2]
         };
         userDataObj.mealPlan.push(formattedMealPlan);
     }
-    // check if the user already has a meal plan for today
-    const todaysMealPlan = userDataObj["mealPlan"].find((plan) => plan.date === today);
-    if (todaysMealPlan){
+    // check if the user already has a meal plan for the date
+    const dateMealPlan = userDataObj["mealPlan"].find((plan) => plan.date === date);
+    if (dateMealPlan){
         return res.json(todaysMealPlan);
     } else {
         const mealPlan = await generateMealPlan();
         const formattedMealPlan = {
-            "date": today, 
+            "date": date, 
             "breakfast": mealPlan["Day 1"][0],
             "lunch": mealPlan["Day 1"][1],
             "dinner": mealPlan["Day 1"][2]
@@ -75,13 +76,45 @@ app.get('/api/generate-meal-plan', async (req, res) => {
 
 // Express route for saving user data
 app.post('/api/save-user-data', (req, res) => {
+  try {
+    const data = req.body;
+    if (!data || Object.keys(data).length === 0) {
+      return res.status(400).json({ error: 'No data provided' });
+    }
+    fs.writeFileSync('userData.json', JSON.stringify(data, null, 2));
+    console.log('Received user data:', data);
+    res.json({ message: 'User data saved successfully' });
+  } catch (error) {
+    console.error('Error saving user data:', error);
+    res.status(500).json({ error: 'Failed to save user data', details: error.message });
+  }
+});
+
+
+// Express route for updating user data
+app.post('/api/update-user-data', (req, res) => { // TODO: Needs testing
     try {
-      const data = req.body;
-      if (!data || Object.keys(data).length === 0) {
+      const updatedUserData = req.body;
+      if (!updatedUserData || Object.keys(updatedUserData).length === 0) {
         return res.status(400).json({ error: 'No data provided' });
       }
-      fs.writeFileSync('userData.json', JSON.stringify(data, null, 2));
-      console.log('Received user data:', data);
+      let existingUserData = fs.readFileSync('userData.json');
+      existingUserData = JSON.parse(existingUserData);
+
+        existingUserData['weight'] = updatedUserData['weight'];
+        existingUserData['height'] = updatedUserData['height'];
+        existingUserData['age'] = updatedUserData['age'];
+        existingUserData['gender'] = updatedUserData['gender'];
+        existingUserData['fitnessGoal'] = updatedUserData['fitnessGoal'];
+        existingUserData['dietaryPreference'] = updatedUserData['dietaryPreference'];
+        existingUserData['allergies'] = updatedUserData['allergies'];
+        existingUserData['activityLevel'] = updatedUserData['activityLevel'];
+        existingUserData['cookingHabits'] = updatedUserData['cookingHabits'];
+  
+  
+      fs.writeFileSync('userData.json', JSON.stringify(existingUserData, null, 2));
+      console.log('Received user data:', updatedUserDataData);
+      console.log('SAVED user data:', existingUserData);
       res.json({ message: 'User data saved successfully' });
     } catch (error) {
       console.error('Error saving user data:', error);
@@ -101,6 +134,8 @@ app.post('/api/save-user-data', (req, res) => {
         }
     );
   
+
+
   // Error handling middleware
   app.use((err, req, res, next) => {
     console.error(err.stack);
