@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Activity, Target, Utensils, Smartphone } from 'lucide-react';
+import { generateMealPlan} from './utils.js';
 
 const DataCollection = () => {
   const [integrationMethod, setIntegrationMethod] = useState('');
@@ -30,7 +31,13 @@ const DataCollection = () => {
       userData: formData
     };
     console.log('Health Data JSON:', JSON.stringify(healthData, null, 2));
-    window.location.href = '/meal-plan';
+    // let response = generateMealPlan()
+    // .then(mealPlan => console.log(mealPlan))
+    // .catch(error => console.error(error));
+
+    // // save response as json file 
+    // localStorage.setItem('healthData', JSON.stringify(response, null, 2));
+    window.location.href = '/app/*';
     // Navigate to mealplan page
     
   };

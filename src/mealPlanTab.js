@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CalendarDays, ArrowUpRight, Book, User } from 'lucide-react';
+import { generateMealPlan } from './utils.js';
 
 const MealPlanTab = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -8,11 +9,21 @@ const MealPlanTab = () => {
   const mealTypes = ['Breakfast', 'Lunch', 'Dinner'];
 
   // Dummy data for meal plan
+
   const dummyMealPlan = {
     Breakfast: 'Oatmeal with fruits',
     Lunch: 'Grilled chicken salad',
     Dinner: 'Salmon with roasted vegetables'
   };
+
+  generateMealPlan()
+  .then((mealPlan) => {
+    dummyMealPlan = {
+      Breakfast: mealPlan['Day 1'][0], 
+      Lunch: mealPlan['Day 1'][1],
+      Dinner: mealPlan['Day 1'][2]
+    };
+  });
 
   const generateWeekDays = () => {
     const days = [];
@@ -54,22 +65,6 @@ const MealPlanTab = () => {
         </div>
       </div>
 
-      <div className="bg-white bg-opacity-90 shadow-lg p-4">
-        <div className="max-w-5xl mx-auto flex justify-around">
-          <button className="text-center text-green-600 hover:text-green-800 transition">
-            <ArrowUpRight size={24} />
-            <div>My Progress</div>
-          </button>
-          <button className="text-center text-green-600 hover:text-green-800 transition">
-            <Book size={24} />
-            <div>Meal Plan</div>
-          </button>
-          <button className="text-center text-green-600 hover:text-green-800 transition">
-            <User size={24} />
-            <div>Me</div>
-          </button>
-        </div>
-      </div>
     </div>
   );
 };
