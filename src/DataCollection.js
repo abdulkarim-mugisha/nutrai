@@ -30,7 +30,7 @@ const DataCollection = () => {
       userData: formData
     };
     console.log('Health Data JSON:', JSON.stringify(healthData, null, 2));
-    window.location.href = '/meal-plan';
+    window.location.href = '/app/*';
     // Navigate to mealplan page
     
   };

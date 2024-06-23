@@ -54,22 +54,6 @@ const MealPlanTab = () => {
         </div>
       </div>
 
-      <div className="bg-white bg-opacity-90 shadow-lg p-4">
-        <div className="max-w-5xl mx-auto flex justify-around">
-          <button className="text-center text-green-600 hover:text-green-800 transition">
-            <ArrowUpRight size={24} />
-            <div>My Progress</div>
-          </button>
-          <button className="text-center text-green-600 hover:text-green-800 transition">
-            <Book size={24} />
-            <div>Meal Plan</div>
-          </button>
-          <button className="text-center text-green-600 hover:text-green-800 transition">
-            <User size={24} />
-            <div>Me</div>
-          </button>
-        </div>
-      </div>
     </div>
   );
 };
