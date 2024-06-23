@@ -30,7 +30,9 @@ const DataCollection = () => {
       userData: formData
     };
     console.log('Health Data JSON:', JSON.stringify(healthData, null, 2));
-    alert('Your fitness journey begins now!');
+    window.location.href = '/meal-plan';
+    // Navigate to mealplan page
+    
   };
 
   return (
@@ -257,12 +259,12 @@ const DataCollection = () => {
               </div>
               
               <div>
-                <button
-                  type="submit"
-                  className="w-full py-4 px-6 border border-transparent rounded-lg shadow-sm text-lg font-medium text-white bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition transform hover:-translate-y-1 hover:shadow-lg"
-                >
-                  Complete Health profile
-                </button>
+              <button
+  type="submit"
+  className="w-full py-4 px-6 border border-transparent rounded-lg shadow-sm text-lg font-medium text-white bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition transform hover:-translate-y-1 hover:shadow-lg"
+>
+  Complete Health Profile
+</button>
               </div>
             </form>
           </div>
