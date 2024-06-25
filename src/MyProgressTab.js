@@ -26,8 +26,35 @@ const MyProgress = () => {
       { day: 'Sat', value: 85 },
       { day: 'Sun', value: 75 },
     ],
-    // Add similar data for Fats, Sugar, and Fiber
+    Fats: [ // Add dummy data for Fats
+      { day: 'Mon', value: 50 },
+      { day: 'Tue', value: 65 },
+      { day: 'Wed', value: 55 },
+      { day: 'Thu', value: 60 },
+      { day: 'Fri', value: 70 },
+      { day: 'Sat', value: 45 },
+      { day: 'Sun', value: 40 },
+    ],
+    Sugar: [ // Add dummy data for Sugar
+      { day: 'Mon', value: 30 },
+      { day: 'Tue', value: 40 },
+      { day: 'Wed', value: 35 },
+      { day: 'Thu', value: 38 },
+      { day: 'Fri', value: 42 },
+      { day: 'Sat', value: 28 },
+      { day: 'Sun', value: 25 },
+    ],
+    Fiber: [ // Add dummy data for Fiber
+      { day: 'Mon', value: 25 },
+      { day: 'Tue', value: 30 },
+      { day: 'Wed', value: 28 },
+      { day: 'Thu', value: 26 },
+      { day: 'Fri', value: 32 },
+      { day: 'Sat', value: 22 },
+      { day: 'Sun', value: 20 },
+    ]
   };
+
 
   const nutrientGoals = {
     Calories: 2500,

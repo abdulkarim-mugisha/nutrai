@@ -1,11 +1,365 @@
 {
-  "weight": "",
-  "height": "",
-  "age": "",
-  "gender": "",
-  "fitnessGoal": "weightLoss",
-  "dietaryPreference": "vegetarian",
-  "allergies": "gluten",
+  "weight": "160",
+  "height": "165",
+  "age": "140",
+  "gender": "male",
+  "fitnessGoal": "muscleBuilding",
+  "dietaryPreference": "pescatarian",
+  "allergies": "none",
   "activityLevel": "lightlyActive",
-  "cookingHabits": ""
+  "cookingHabits": "alwaysCook",
+  "mealPlans": [
+    {
+      "date": "2024-06-23",
+      "Breakfast": {
+        "name": " scrambled eggs with bacon and toast",
+        "ingredients": [
+          "Eggs",
+          "Bacon",
+          "Toast",
+          "Salt",
+          "Pepper"
+        ],
+        "nutrition": {
+          "calories": 300,
+          "carbs": 25,
+          "fat": 12,
+          "protein": 20
+        }
+      },
+      "Lunch": {
+        "name": "Tuna salad with mixed greens and tomato",
+        "ingredients": [
+          "Canned tuna",
+          "Mixed greens",
+          "Tomato",
+          "Olive oil dressing"
+        ],
+        "nutrition": {
+          "calories": 350,
+          "carbs": 15,
+          "fat": 22,
+          "protein": 30
+        }
+      },
+      "Dinner": {
+        "name": "Grilled shrimp with quinoa and steamed broccoli",
+        "ingredients": [
+          "Shrimp",
+          "Quinoa",
+          "Steamed broccoli",
+          "Olive oil",
+          "Salt",
+          "Pepper"
+        ],
+        "nutrition": {
+          "calories": 500,
+          "carbs": 55,
+          "fat": 15,
+          "protein": 40
+        }
+      }
+    },
+    {
+      "date": "2024-06-24",
+      "Breakfast": {
+        "name": "Oatmeal with banana",
+        "ingredients": [
+          "Oats",
+          "Banana",
+          "Honey"
+        ],
+        "nutrition": {
+          "calories": 300,
+          "carbs": 45,
+          "fat": 6,
+          "protein": 10
+        }
+      },
+      "Lunch": {
+        "name": "Grilled chicken salad",
+        "ingredients": [
+          "Grilled chicken breast",
+          "Mixed greens",
+          "Tomato",
+          "Olive oil dressing"
+        ],
+        "nutrition": {
+          "calories": 400,
+          "carbs": 15,
+          "fat": 22,
+          "protein": 35
+        }
+      },
+      "Dinner": {
+        "name": "Baked salmon with roasted vegetables",
+        "ingredients": [
+          "Salmon fillet",
+          "Broccoli",
+          "Carrots",
+          "Olive oil",
+          "Lemon",
+          "Herbs"
+        ],
+        "nutrition": {
+          "calories": 500,
+          "carbs": 25,
+          "fat": 28,
+          "protein": 40
+        }
+      }
+    },
+    {
+      "date": "2024-06-25",
+      "Breakfast": {
+        "name": "Avocado toast with scrambled eggs",
+        "ingredients": [
+          "Avocado",
+          "Whole grain bread",
+          "Scrambled eggs",
+          "Mixed greens",
+          "Salt",
+          "Pepper"
+        ],
+        "nutrition": {
+          "calories": 400,
+          "carbs": 70,
+          "fat": 18,
+          "protein": 35
+        }
+      },
+      "Lunch": {
+        "name": "Tuna salad with mixed greens and tomato",
+        "ingredients": [
+          "Canned tuna",
+          "Mixed greens",
+          "Tomato",
+          "Olive oil dressing"
+        ],
+        "nutrition": {
+          "calories": 350,
+          "carbs": 15,
+          "fat": 22,
+          "protein": 30
+        }
+      },
+      "Dinner": {
+        "name": "Grilled shrimp with quinoa and steamed broccoli",
+        "ingredients": [
+          "Shrimp",
+          "Quinoa",
+          "Steamed broccoli",
+          "Olive oil",
+          "Salt",
+          "Pepper"
+        ],
+        "nutrition": {
+          "calories": 500,
+          "carbs": 55,
+          "fat": 15,
+          "protein": 40
+        }
+      }
+    },
+    {
+      "date": "2024-06-26",
+      "Breakfast": {
+        "name": "Omelette with mushrooms and spinach",
+        "ingredients": [
+          "Eggs",
+          "Mushrooms",
+          "Spinach",
+          "Salt",
+          "Pepper"
+        ],
+        "nutrition": {
+          "calories": 350,
+          "carbs": 25,
+          "fat": 12,
+          "protein": 20
+        }
+      },
+      "Lunch": {
+        "name": "Tuna salad with mixed greens and tomato",
+        "ingredients": [
+          "Canned tuna",
+          "Mixed greens",
+          "Tomato",
+          "Olive oil dressing"
+        ],
+        "nutrition": {
+          "calories": 350,
+          "carbs": 15,
+          "fat": 22,
+          "protein": 30
+        }
+      },
+      "Dinner": {
+        "name": "Grilled shrimp with quinoa and steamed broccoli",
+        "ingredients": [
+          "Shrimp",
+          "Quinoa",
+          "Steamed broccoli",
+          "Olive oil",
+          "Salt",
+          "Pepper"
+        ],
+        "nutrition": {
+          "calories": 500,
+          "carbs": 55,
+          "fat": 15,
+          "protein": 40
+        }
+      }
+    },
+    {
+      "date": "2024-06-27",
+      "Breakfast": {
+        "name": "Greek yogurt with berries and granola",
+        "ingredients": [
+          "Greek yogurt",
+          "Berries",
+          "Granola"
+        ],
+        "nutrition": {
+          "calories": 300,
+          "carbs": 40,
+          "fat": 10,
+          "protein": 20
+        }
+      },
+      "Lunch": {
+        "name": "Turkey and avocado wrap",
+        "ingredients": [
+          "Turkey breast",
+          "Avocado",
+          "Whole wheat wrap",
+          "Lettuce",
+          "Tomato"
+        ],
+        "nutrition": {
+          "calories": 400,
+          "carbs": 30,
+          "fat": 20,
+          "protein": 30
+        }
+      },
+      "Dinner": {
+        "name": "Roasted chicken with roasted vegetables",
+        "ingredients": [
+          "Chicken breast",
+          "Roasted vegetables",
+          "Olive oil",
+          "Salt",
+          "Pepper"
+        ],
+        "nutrition": {
+          "calories": 450,
+          "carbs": 20,
+          "fat": 15,
+          "protein": 35
+        }
+      }
+    },
+    {
+      "date": "2024-06-28",
+      "Breakfast": {
+        "name": "Avocado toast with scrambled eggs",
+        "ingredients": [
+          "Avocado",
+          "Scrambled eggs",
+          "Whole wheat bread"
+        ],
+        "nutrition": {
+          "calories": 350,
+          "carbs": 30,
+          "fat": 20,
+          "protein": 20
+        }
+      },
+      "Lunch": {
+        "name": "Grilled chicken salad",
+        "ingredients": [
+          "Grilled chicken",
+          "Mixed greens",
+          "Tomato",
+          "Cucumber",
+          "Olive oil dressing"
+        ],
+        "nutrition": {
+          "calories": 350,
+          "carbs": 15,
+          "fat": 20,
+          "protein": 35
+        }
+      },
+      "Dinner": {
+        "name": "Baked salmon with quinoa and steamed asparagus",
+        "ingredients": [
+          "Salmon fillet",
+          "Quinoa",
+          "Steamed asparagus",
+          "Olive oil",
+          "Salt",
+          "Pepper"
+        ],
+        "nutrition": {
+          "calories": 450,
+          "carbs": 40,
+          "fat": 20,
+          "protein": 35
+        }
+      }
+    },
+    {
+      "date": "2024-06-29",
+      "Breakfast": {
+        "name": "Oatmeal with banana and almond milk",
+        "ingredients": [
+          "Oatmeal",
+          "Banana",
+          "Almond milk"
+        ],
+        "nutrition": {
+          "calories": 300,
+          "carbs": 50,
+          "fat": 10,
+          "protein": 10
+        }
+      },
+      "Lunch": {
+        "name": "Turkey and cheese sandwich",
+        "ingredients": [
+          "Turkey breast",
+          "Cheese",
+          "Whole wheat bread",
+          "Lettuce",
+          "Tomato"
+        ],
+        "nutrition": {
+          "calories": 400,
+          "carbs": 30,
+          "fat": 20,
+          "protein": 30
+        }
+      },
+      "Dinner": {
+        "name": "Grilled steak with roasted sweet potatoes and steamed green beans",
+        "ingredients": [
+          "Steak",
+          "Roasted sweet potatoes",
+          "Steamed green beans",
+          "Olive oil",
+          "Salt",
+          "Pepper"
+        ],
+        "nutrition": {
+          "calories": 550,
+          "carbs": 40,
+          "fat": 30,
+          "protein": 40
+        }
+      }
+    }
+  ]
 }

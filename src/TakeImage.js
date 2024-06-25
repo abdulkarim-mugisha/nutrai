@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Camera, X } from 'lucide-react';
+import CONFIG from './config';
 
 const TakeImage = ({ onImageCapture, onClose }) => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
-  const [isCameraOn, setIsCameraOn] = useState(false);
+  const [isCameraOn, setIsCameraOn] = useState(true);
 
   useEffect(() => {
     if (isCameraOn) {
@@ -31,6 +32,21 @@ const TakeImage = ({ onImageCapture, onClose }) => {
     }
   };
 
+  const uploadImage = async (imageDataUrl) => {
+    let base64data = imageDataUrl.split(';base64,')[1];
+
+    fetch(`${CONFIG.API_URL}upload-image`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ image: base64data })
+    })
+      .then(response => response.json())
+      .then(data => console.log('Upload response:', data))
+      .catch(error => console.error('Upload error:', error));
+  };
+
   const captureImage = () => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
@@ -38,6 +54,7 @@ const TakeImage = ({ onImageCapture, onClose }) => {
     canvas.height = video.videoHeight;
     canvas.getContext('2d').drawImage(video, 0, 0);
     const imageDataUrl = canvas.toDataURL('image/jpeg');
+    uploadImage(imageDataUrl);
     onImageCapture(imageDataUrl);
     console.log("Image captured successfully");
     setIsCameraOn(false);

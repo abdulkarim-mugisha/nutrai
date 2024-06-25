@@ -102,7 +102,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<DataCollection />} />
         <Route path="/data-collection" element={<DataCollection />} />
         <Route path="/app/*" element={<MainContent />} />
       </Routes>

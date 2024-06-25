@@ -7,21 +7,28 @@ const MeTab = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/user-data')
-      .then(response => {
+    const fetchData = async () => { 
+      setIsLoading(true); 
+      setError(null);
+
+      try {
+        const response = await fetch('http://localhost:3080/api/user-data'); 
         if (!response.ok) {
-          throw new Error('Failed to fetch user data');
+          throw new Error('Network response was not ok'); 
         }
-        return response.json();
-      })
-      .then(data => {
-        setUserData(data);
+
+        const data = await response.json(); 
+        console.log("Fetched User Data:", data); // Check the fetched data
+        setUserData(data); 
+      } catch (error) {
+        console.error("Error fetching data:", error); 
+        setError(error.message); 
+      } finally {
         setIsLoading(false);
-      })
-      .catch(err => {
-        setError(err.message);
-        setIsLoading(false);
-      });
+      }
+    };
+
+    fetchData(); 
   }, []);
 
   if (isLoading) return <div>Loading...</div>;
@@ -29,7 +36,7 @@ const MeTab = () => {
   if (!userData) return <div>No user data available</div>;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-400 via-green-300 to-blue-500 flex flex-col">
+    <div className="max-h-screen from-green-400 via-green-300 to-blue-500 flex flex-col">
       <div className="flex-grow p-4">
         <div className="bg-white bg-opacity-90 rounded-3xl shadow-2xl overflow-hidden max-w-5xl w-full mx-auto">
           <div className="p-8">

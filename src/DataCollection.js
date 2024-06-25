@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Activity, Target, Utensils, Smartphone } from 'lucide-react';
+import CONFIG from './config';
 // import { generateMealPlan} from './utils.js';
 
 const DataCollection = () => {
@@ -41,7 +42,7 @@ const DataCollection = () => {
     
     console.log(options.body);
     
-    fetch('http://localhost:3000/api/save-user-data', options)
+    fetch(`${CONFIG.API_URL}save-user-data`, options)
       .then(response => response.json())
       .then(data => console.log('Data saved:', data))
       .catch(error => console.error('Error saving data:', error));
